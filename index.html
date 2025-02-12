@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti 💖</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 id="mensaje-inicial" class="fade-in">Tengo algo para ti... 💌</h1>
+        <button id="boton-inicio" class="fade-in">Haz clic aquí</button>
+
+        <div id="pregunta" class="oculto">
+            <h2 class="fade-in">¿QUIERES SER POR SEPTIMA VEZ MI SAN VALENTIN? 💖</h2>
+            <button class="respuesta" onclick="mostrarRespuesta('si')">Sí mi amorcito</button>
+            <button class="respuesta" onclick="mostrarRespuesta('no')">No quiero</button>
+        </div>
+
+        <div id="respuesta-final" class="oculto">
+            <h2 class="fade-in mensaje-final">Muchas gracias mi niña💕</h2>
+            <p class="fade-in">Eres la mejor y mas bonita del mundo, Te amo mucho💘</p>
+            <img src="ternurin.jpg" alt="Imagen especial" class="fade-in" style="width: 100px; height: auto; margin-top: 10px;">
+        </div>
+
+        <div id="segunda-oportunidad" class="oculto">
+            <h2 class="fade-in">Por favor, no seas malita :((</h2>
+            <button class="respuesta" onclick="mostrarRespuesta('acepta')">Ya está bien</button>
+            <button class="respuesta" onclick="mostrarRespuesta('insiste')">No, no quiero</button>
+        </div>
+
+        <div id="tercera-oportunidad" class="oculto">
+            <h2 class="fade-in">Si aceptas te daré muchos besos y chocolates 🍫😘</h2>
+            <img src="chocolates.png" alt="Chocolates" class="fade-in" style="width: 200px; height: auto; margin-top: 10px;">
+            <button class="respuesta" onclick="mostrarRespuesta('convencida')">Ta bueno, me convenciste</button>
+            <button class="respuesta" onclick="mostrarRespuesta('final_no')">Igual no quiero</button>
+        </div>
+
+        <div id="ultima-oportunidad" class="oculto">
+            <h2 class="fade-in">Bueno, yo que pensaba mandarte un video donde Yoon-gi te saluda, pero ya que no quieres... 😢</h2>
+            <img src="yongi.jpeg" alt="Yoon-gi" class="fade-in" style="width: 100px; height: auto; margin-top: 10px;">
+            <button class="respuesta" onclick="mostrarRespuesta('aceptar_yoon-gi')">Ya ok, acepto</button>
+            <button class="respuesta" onclick="mostrarRespuesta('final_rechazo')">Todo sea por mi Yoon-gi</button>
+        </div>
+
+        <div id="final-mensaje" class="oculto">
+            <h2 class="fade-in">Gracias mi niña, no te arrepentirás 💗</h2>
+            <img src="ternurin.jpg" alt="Final" class="fade-in" style="width: 100px; height: auto; margin-top: 10px;">
+        </div>
+    </div>
+
+    <!-- Botón de reproducción de música -->
+    <button id="play-music">Dale play mi niña 💗</button>
+    <audio id="background-music" src="Camilo-NoTeVayas.mp3" loop></audio>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById("play-music").addEventListener("click", function() {
+            let music = document.getElementById("background-music");
+            if (music.paused) {
+                music.play();
+                this.textContent = "⏸";
+            } else {
+                music.pause();
+                this.textContent = "Dale play mi niña 💗";
+            }
+        });
+
+        function mostrarRespuesta(opcion) {
+            document.getElementById("pregunta").classList.add("oculto");
+            if (opcion === "si" || opcion === "acepta" || opcion === "convencida" || opcion === "aceptar_yoon-gi") {
+                document.getElementById("segunda-oportunidad").classList.add("oculto");
+                document.getElementById("tercera-oportunidad").classList.add("oculto");
+                document.getElementById("ultima-oportunidad").classList.add("oculto");
+                document.getElementById("respuesta-final").classList.remove("oculto");
+            } else if (opcion === "no") {
+                document.getElementById("segunda-oportunidad").classList.remove("oculto");
+            } else if (opcion === "insiste") {
+                document.getElementById("segunda-oportunidad").classList.add("oculto");
+                document.getElementById("tercera-oportunidad").classList.remove("oculto");
+            } else if (opcion === "final_no") {
+                document.getElementById("tercera-oportunidad").classList.add("oculto");
+                document.getElementById("ultima-oportunidad").classList.remove("oculto");
+            } else if (opcion === "final_rechazo") {
+                document.getElementById("ultima-oportunidad").classList.add("oculto");
+                document.getElementById("final-mensaje").classList.remove("oculto");
+            }
+        }
+    </script>
+</body>
+</html>
